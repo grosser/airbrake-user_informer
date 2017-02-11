@@ -67,7 +67,8 @@ class << Airbrake
   attr_accessor :user_information
 end
 
-if defined?(Rack)
+if defined?(::Rails::Railtie)
+  raise "Load airbrake before airbrake-user_informer" unless defined?(Airbrake::Rack)
   Airbrake::Rack::Middleware.prepend(Airbrake::UserInformer::MiddlewareExtension)
 
   module Airbrake

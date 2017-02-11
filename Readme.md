@@ -14,7 +14,13 @@ Usage
 
 ```Ruby
 # Gemfile
+gem 'airbrake'
 gem 'airbrake-user_informer'
+
+# config/initializers/airbrake.rb
+Airbrake.configure do |config|
+  ... regular config ...
+end
 
 Airbrake.user_information = # replaces <!-- AIRBRAKE ERROR --> on 500 pages
   "<br/><br/>Error number: <a href='https://airbrake.io/locate/{{error_id}}'>https://airbrake.io/locate/{{error_id}}</a>"
@@ -31,14 +37,13 @@ Details
 
 Development
 ===========
- - `bundle && cd example && rails s`
- - then go to `localhost:3000` to see normal state and `localhost:3000/error` to see error state.
+ - run tests: `bundle && rake`
+ - example app: `cd example && bundle && rails s` then go to `localhost:3000` or `localhost:3000/error`
 
-TODO
-====
- - example app and test app
- - properly tested rails 4 support
- - lower to ruby 2.1
+PR needed for
+=============
+ - rails 4.2 support
+ - ruby 2.1 support
 
 Author
 ======
