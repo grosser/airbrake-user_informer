@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    airbrake-user_informer (0.1.1)
+    airbrake-user_informer (0.1.2)
       airbrake
       rack
       railties (~> 5.0.0)
@@ -100,3 +100,6 @@ DEPENDENCIES
   rspec
   rubocop
   single_cov
+
+BUNDLED WITH
+   1.13.6
