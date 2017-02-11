@@ -97,12 +97,30 @@ describe Airbrake::UserInformer do
     end
 
     describe "when body is an IO" do
-      let(:body) { StringIO.new("Original <!-- AIRBRAKE ERROR --> Body\nand more") }
+      class FakeIoBody
+        def initialize(content)
+          @content = content
+          @closed = false
+        end
+
+        def each(&block)
+          @content.each(&block)
+        end
+
+        def close
+          @closed = true
+        end
+
+        def closed?
+          @closed
+        end
+      end
+      let(:body) { FakeIoBody.new(["Original <!-- AIRBRAKE ERROR --> Body", "and more"]) }
 
       before { expect(app).to receive(:sleep).and_call_original.at_most(10) }
 
       it "closes old body so it can be garbadge collected" do
-        expect(call).to eq([200, {"Content-Length" => "36"}, ["Original Foo 12345 bar Body\n", "and more"]])
+        expect(call).to eq([200, {"Content-Length" => "35"}, ["Original Foo 12345 bar Body", "and more"]])
         expect(body.closed?).to eq true
       end
 

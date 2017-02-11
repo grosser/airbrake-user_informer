@@ -52,7 +52,8 @@ module Airbrake
       # - body interface is .each so we cannot use anything else
       # - always call .close on the old body so it can get garbage collected if it is a File
       def replace_placeholder(replacement, body, headers)
-        new_body = body.map { |chunk| chunk.gsub(PLACEHOLDER, replacement) }
+        new_body = []
+        body.each { |chunk| new_body << chunk.gsub(PLACEHOLDER, replacement) }
         headers["Content-Length"] = new_body.inject(0) { |sum, x| sum + x.bytesize }.to_s
         new_body
       ensure
