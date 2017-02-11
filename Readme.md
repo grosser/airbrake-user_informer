@@ -17,7 +17,7 @@ Usage
 gem 'airbrake-user_informer'
 
 Airbrake.user_information = # replaces <!-- AIRBRAKE ERROR --> on 500 pages
-  "<br/><br/>Error number: <a href='https://airbrake.io/locate/{{error_id}}'>{{error_id}}</a>"
+  "<br/><br/>Error number: <a href='https://airbrake.io/locate/{{error_id}}'>https://airbrake.io/locate/{{error_id}}</a>"
 
 # public/500.html
 <!-- AIRBRAKE ERROR -->
@@ -25,9 +25,9 @@ Airbrake.user_information = # replaces <!-- AIRBRAKE ERROR --> on 500 pages
 
 Details
 =======
- - adds a new middleware to render the errors
- - modifies `Airbrake::Rack::Middleware` to wait for max 1s so errors resolve to ids
- - adds `Airbrake.user_information` accessor for your custom config
+ - adds a new middleware to wait for (max 1s) and render error id
+ - modifies `Airbrake::Rack::Middleware` to store the exceptions it sends to airbrake
+ - adds `Airbrake.user_information` accessor for configuration
 
 Development
 ===========
@@ -37,7 +37,7 @@ Development
 TODO
 ====
  - example app and test app
- - properly tested rails 4 support 
+ - properly tested rails 4 support
  - lower to ruby 2.1
 
 Author
