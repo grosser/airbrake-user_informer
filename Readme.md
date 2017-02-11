@@ -37,7 +37,7 @@ Details
 
 Development
 ===========
- - run tests: `bundle && rake`
+ - run tests: `bundle && rake default integration` (travis cannot run integration tests)
  - example app: `cd example && bundle && rails s` then go to `localhost:3000` or `localhost:3000/error`
 
 PR needed for

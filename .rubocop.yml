@@ -3,6 +3,7 @@ AllCops:
   TargetRubyVersion: 2.3
   Exclude:
     - vendor/**/*
+    - example/**/*
 
 LineLength:
   Max: 120
@@ -26,4 +27,7 @@ Style/Documentation:
   Enabled: false
 
 Lint/AssignmentInCondition:
+  Enabled: false
+
+Style/RescueModifier:
   Enabled: false
