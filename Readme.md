@@ -1,4 +1,4 @@
-Show exception ids on error pages so users or support can track them down faster
+Show rails exception ids on error pages so users or support can track them down faster
 
 ![Example](assets/example.png?raw=true)
 
@@ -23,7 +23,7 @@ Airbrake.configure do |config|
 end
 
 Airbrake.user_information = # replaces <!-- AIRBRAKE ERROR --> on 500 pages
-  "<br/><br/>Error number: <a href='https://airbrake.io/locate/{{error_id}}'>https://airbrake.io/locate/{{error_id}}</a>"
+  "<br/><br/>Error number: <a href='https://airbrake.io/locate/{{error_id}}'>{{error_id}}</a>"
 
 # public/500.html
 <!-- AIRBRAKE ERROR -->
@@ -31,7 +31,7 @@ Airbrake.user_information = # replaces <!-- AIRBRAKE ERROR --> on 500 pages
 
 Details
 =======
- - adds a new middleware to wait for (max 1s) and render error id
+ - adds a new middleware to wait for exception to report (max 1s) and render error id
  - modifies `Airbrake::Rack::Middleware` to store the exceptions it sends to airbrake
  - adds `Airbrake.user_information` accessor for configuration
 
