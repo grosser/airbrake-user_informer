@@ -2,8 +2,9 @@ AllCops:
   DisplayCopNames: true
   TargetRubyVersion: 2.3
   Exclude:
-    - vendor/**/*
     - example/**/*
+    - gemfiles/vendor/**/*
+    - vendor/**/*
 
 LineLength:
   Max: 120
