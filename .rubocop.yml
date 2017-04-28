@@ -18,6 +18,12 @@ Style/StringLiteralsInInterpolation:
 Style/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
 
+Style/EmptyLineAfterMagicComment:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
 Style/NumericLiterals:
   Enabled: false
 

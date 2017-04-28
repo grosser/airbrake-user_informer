@@ -1,2 +1,2 @@
 eval_gemfile "Gemfile"
-gem "railties", "5.1.0.beta1"
+gem "railties", "5.1.0"
