@@ -40,11 +40,6 @@ Development
  - run tests: `bundle && rake default integration` (travis cannot run integration tests)
  - example app: `cd example && bundle && rails s` then go to `localhost:3000` or `localhost:3000/error`
 
-PR needed for
-=============
- - rails 4.2 support
- - ruby 2.1 support
-
 Author
 ======
 [Michael Grosser](http://grosser.it)<br/>
