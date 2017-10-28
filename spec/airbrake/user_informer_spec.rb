@@ -55,7 +55,7 @@ describe Airbrake::UserInformer do
 
     it "informs the user of the error" do
       expect(app).to receive(:sleep).and_call_original.at_most(10)
-      expect(call).to eq([200, {"Content-Length" => "35"}, ["Original Foo 12345 bar Body", "and more"]])
+      expect(call).to eq([200, {"Content-Length" => "35", "Error-Id" => "12345"}, ["Original Foo 12345 bar Body", "and more"]])
     end
 
     it "does nothing when user will not be notified" do
@@ -67,19 +67,19 @@ describe Airbrake::UserInformer do
     it "replaces nothing when informer does not include placeholder" do
       Airbrake.user_information = "Foo bar"
       expect(app).to receive(:sleep).and_call_original.at_most(10)
-      expect(call).to eq([200, {"Content-Length" => "29"}, ["Original Foo bar Body", "and more"]])
+      expect(call).to eq([200, {"Content-Length" => "29", "Error-Id" => "12345"}, ["Original Foo bar Body", "and more"]])
     end
 
     it "replaces multiple placeholders" do
       Airbrake.user_information = "Foo {{error_id}} bar {{error_id}}"
       expect(app).to receive(:sleep).and_call_original.at_most(10)
-      expect(call).to eq([200, {"Content-Length" => "41"}, ["Original Foo 12345 bar 12345 Body", "and more"]])
+      expect(call).to eq([200, {"Content-Length" => "41", "Error-Id" => "12345"}, ["Original Foo 12345 bar 12345 Body", "and more"]])
     end
 
     it "does not blow up on empty body" do
       body.clear
       expect(app).to receive(:sleep).and_call_original.at_most(10)
-      expect(call).to eq([200, {"Content-Length" => "0"}, []])
+      expect(call).to eq([200, {"Content-Length" => "0", "Error-Id" => "12345"}, []])
     end
 
     it "times out when notifying airbrake takes too long" do
@@ -120,7 +120,7 @@ describe Airbrake::UserInformer do
       before { expect(app).to receive(:sleep).and_call_original.at_most(10) }
 
       it "closes old body so it can be garbadge collected" do
-        expect(call).to eq([200, {"Content-Length" => "35"}, ["Original Foo 12345 bar Body", "and more"]])
+        expect(call).to eq([200, {"Content-Length" => "35", "Error-Id" => "12345"}, ["Original Foo 12345 bar Body", "and more"]])
         expect(body.closed?).to eq true
       end
 

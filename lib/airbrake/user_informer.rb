@@ -28,6 +28,7 @@ module Airbrake
         if (replacement = Airbrake.user_information) && error_id = wait_for_error(env[ENV_KEY])
           replacement = replacement.gsub(/\{\{\s*error_id\s*\}\}/, error_id.to_s)
           body = replace_placeholder(replacement, body, headers)
+          headers["Error-Id"] = error_id.to_s
         end
         [status, headers, body]
       end
