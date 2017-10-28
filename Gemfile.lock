@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    airbrake-user_informer (0.2.0)
+    airbrake-user_informer (0.3.0)
       airbrake (~> 6.0)
       airbrake-ruby (~> 2.0)
       rack
@@ -103,3 +103,6 @@ DEPENDENCIES
   rubocop
   single_cov
   wwtd
+
+BUNDLED WITH
+   1.15.3
