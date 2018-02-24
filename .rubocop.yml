@@ -38,3 +38,10 @@ Lint/AssignmentInCondition:
 
 Style/RescueModifier:
   Enabled: false
+
+# Should be re-enabled once we require ruby 2.3.0+
+Gemspec/RequiredRubyVersion:
+  Enabled: false
+
+Gemspec/OrderedDependencies:
+  Enabled: false
