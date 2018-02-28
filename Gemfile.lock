@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    airbrake-user_informer (0.4.0)
+    airbrake-user_informer (0.5.0)
       airbrake (~> 7.0)
       airbrake-ruby (~> 2.0)
       rack
@@ -52,7 +52,7 @@ GEM
       ast (~> 2.2)
     powerpack (0.1.1)
     rack (2.0.4)
-    rack-test (0.8.2)
+    rack-test (0.8.3)
       rack (>= 1.0, < 3)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
