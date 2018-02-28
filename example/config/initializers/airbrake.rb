@@ -1,5 +1,6 @@
 Airbrake.user_information = # replaces <!-- AIRBRAKE ERROR --> on 500 pages
   "<br/><br/>Error number: <a href='https://airbrake.io/locate/{{error_id}}'>{{error_id}}</a>"
+Airbrake.user_information_placeholder = "<!-- AIRBRAKE ERROR -->"
 
 Airbrake.configure do |config|
   # Free test account that is rate limited pretty hard

@@ -14,9 +14,9 @@ module Airbrake
     # stolen from https://github.com/airbrake/airbrake/blob/v4.3.8/lib/airbrake/user_informer.rb
     class Middleware
       ENV_KEY = "airbrake.promise"
-      PLACEHOLDER = "<!-- AIRBRAKE ERROR -->"
       TIMEOUT = 1.0 # seconds
       STEPS = 100
+      DEFAULT_PLACEHOLDER = "<!-- AIRBRAKE ERROR -->"
 
       def initialize(app)
         @app = app
@@ -54,7 +54,7 @@ module Airbrake
       # - always call .close on the old body so it can get garbage collected if it is a File
       def replace_placeholder(replacement, body, headers)
         new_body = []
-        body.each { |chunk| new_body << chunk.gsub(PLACEHOLDER, replacement) }
+        body.each { |chunk| new_body << chunk.gsub(Airbrake.user_information_placeholder || DEFAULT_PLACEHOLDER, replacement) }
         headers["Content-Length"] = new_body.inject(0) { |sum, x| sum + x.bytesize }.to_s
         new_body
       ensure
@@ -66,6 +66,7 @@ end
 
 class << Airbrake
   attr_accessor :user_information
+  attr_accessor :user_information_placeholder
 end
 
 if defined?(::Rails::Railtie)
