@@ -22,7 +22,10 @@ Airbrake.configure do |config|
   ... regular config ...
 end
 
-Airbrake.user_information = # replaces <!-- AIRBRAKE ERROR --> on 500 pages
+# optional: customize placeholder ... default is '<!-- AIRBRAKE ERROR -->'
+Airbrake.user_information_placeholder = '<!-- AIRBRAKE ERROR -->'
+
+Airbrake.user_information = # replaces user_information_placeholder on 500 pages
   "<br/><br/>Error number: <a href='https://airbrake.io/locate/{{error_id}}'>{{error_id}}</a>"
 
 # public/500.html

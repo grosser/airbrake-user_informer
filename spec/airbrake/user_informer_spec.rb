@@ -38,6 +38,16 @@ describe Airbrake::UserInformer do
   end
 
   describe Airbrake::UserInformer::Middleware do
+    def with_placeholder(placeholder)
+      old_placeholder = Airbrake.user_information_placeholder
+      Airbrake.user_information_placeholder = placeholder
+      begin
+        yield
+      ensure
+        Airbrake.user_information_placeholder = old_placeholder
+      end
+    end
+
     let(:promise) { Airbrake::Promise.new }
     let(:env) { {"airbrake.promise" => promise} }
     let(:body) { ["Original <!-- AIRBRAKE ERROR --> Body", "and more"] }
@@ -56,6 +66,13 @@ describe Airbrake::UserInformer do
     it "informs the user of the error" do
       expect(app).to receive(:sleep).and_call_original.at_most(10)
       expect(call).to eq([200, {"Content-Length" => "35", "Error-Id" => "12345"}, ["Original Foo 12345 bar Body", "and more"]])
+    end
+
+    it "informs the user of the error using the default value" do
+      with_placeholder(nil) do
+        expect(app).to receive(:sleep).and_call_original.at_most(10)
+        expect(call).to eq([200, {"Content-Length" => "35", "Error-Id" => "12345"}, ["Original Foo 12345 bar Body", "and more"]])
+      end
     end
 
     it "does nothing when user will not be notified" do
@@ -94,6 +111,17 @@ describe Airbrake::UserInformer do
         promise.reject("e")
       end
       expect(app.call(env)).to eq([200, {}, ["Original <!-- AIRBRAKE ERROR --> Body", "and more"]])
+    end
+
+    describe "using a custom placeholder" do
+      let(:body) { ["Original <!-- CUSTOM PLACEHOLDER --> Body", "and more"] }
+
+      it "informs the user of the error with a custom placeholder" do
+        with_placeholder("<!-- CUSTOM PLACEHOLDER -->") do
+          expect(app).to receive(:sleep).and_call_original.at_most(10)
+          expect(call).to eq([200, {"Content-Length" => "35", "Error-Id" => "12345"}, ["Original Foo 12345 bar Body", "and more"]])
+        end
+      end
     end
 
     describe "when body is an IO" do
