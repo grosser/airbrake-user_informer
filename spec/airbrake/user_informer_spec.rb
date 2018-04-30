@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require "spec_helper"
 
-SingleCov.covered! uncovered: 8 # if defined?(Rack) block is not tested
+SingleCov.covered! uncovered: 9 # if defined?(Rack) block is not tested ... TODO: test 'unless promise'
 
 describe Airbrake::UserInformer do
   after do

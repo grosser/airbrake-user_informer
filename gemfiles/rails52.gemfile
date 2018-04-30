@@ -1,4 +1,4 @@
 # frozen_string_literal: true
 
 eval_gemfile "../Gemfile"
-gem "railties", "~> 5.0.0"
+gem "railties", "~> 5.2.0"
