@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    airbrake-user_informer (0.5.0)
+    airbrake-user_informer (0.6.0)
       airbrake (~> 7.0)
       airbrake-ruby (~> 2.0)
       rack
