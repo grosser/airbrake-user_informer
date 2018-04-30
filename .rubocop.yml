@@ -15,10 +15,10 @@ Style/StringLiterals:
 Style/StringLiteralsInInterpolation:
   EnforcedStyle: double_quotes
 
-Style/SpaceInsideHashLiteralBraces:
+Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
 
-Style/EmptyLineAfterMagicComment:
+Layout/EmptyLineAfterMagicComment:
   Enabled: false
 
 Style/SymbolArray:
@@ -44,4 +44,11 @@ Gemspec/RequiredRubyVersion:
   Enabled: false
 
 Gemspec/OrderedDependencies:
+  Enabled: false
+
+# Should be re-enabled once we require ruby 2.3.0+
+Style/SafeNavigation:
+  Enabled: false
+
+Naming/UncommunicativeMethodParamName:
   Enabled: false
