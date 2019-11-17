@@ -4,6 +4,7 @@ require "bundler/gem_tasks"
 require "bump/tasks"
 require "wwtd/tasks"
 
+# TODO: we should run integration by default ??
 task default: [:spec, :rubocop]
 
 desc "Run unit tests"
