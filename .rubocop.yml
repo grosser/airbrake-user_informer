@@ -6,9 +6,6 @@ AllCops:
     - gemfiles/vendor/**/*
     - vendor/**/*
 
-LineLength:
-  Max: 120
-
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
@@ -39,16 +36,14 @@ Lint/AssignmentInCondition:
 Style/RescueModifier:
   Enabled: false
 
-# Should be re-enabled once we require ruby 2.3.0+
-Gemspec/RequiredRubyVersion:
-  Enabled: false
-
 Gemspec/OrderedDependencies:
   Enabled: false
 
-# Should be re-enabled once we require ruby 2.3.0+
-Style/SafeNavigation:
+Naming/UncommunicativeMethodParamName:
   Enabled: false
 
-Naming/UncommunicativeMethodParamName:
+Layout/EmptyLineAfterGuardClause:
+  Enabled: false
+
+Style/IfUnlessModifier:
   Enabled: false

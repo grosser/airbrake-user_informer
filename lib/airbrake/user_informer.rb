@@ -58,7 +58,7 @@ module Airbrake
         headers["Content-Length"] = new_body.inject(0) { |sum, x| sum + x.bytesize }.to_s
         new_body
       ensure
-        body.close if body && body.respond_to?(:close)
+        body.close if body&.respond_to?(:close)
       end
     end
   end
