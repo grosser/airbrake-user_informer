@@ -2,8 +2,7 @@ PATH
   remote: .
   specs:
     airbrake-user_informer (0.7.0)
-      airbrake (~> 7.0)
-      airbrake-ruby (~> 2.0)
+      airbrake (~> 9.0)
       rack
       railties (>= 5.0.0, < 6.1.0)
 
@@ -29,9 +28,10 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2)
-    airbrake (7.4.0)
-      airbrake-ruby (~> 2.12)
-    airbrake-ruby (2.12.0)
+    airbrake (9.5.0)
+      airbrake-ruby (~> 4.8)
+    airbrake-ruby (4.8.0)
+      rbtree3 (~> 0.5)
     ast (2.4.0)
     builder (3.2.3)
     bump (0.6.0)
@@ -69,6 +69,7 @@ GEM
       thor (>= 0.20.3, < 2.0)
     rainbow (3.0.0)
     rake (12.3.1)
+    rbtree3 (0.5.0)
     rspec (3.7.0)
       rspec-core (~> 3.7.0)
       rspec-expectations (~> 3.7.0)
