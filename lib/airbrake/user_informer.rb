@@ -2,9 +2,9 @@
 module Airbrake
   module UserInformer
     module MiddlewareExtension
-      def notify_airbrake(_, env)
+      def notify_airbrake(*)
         if Airbrake.user_information
-          env[Middleware::ENV_KEY] = super
+          ::Airbrake::Rack::RequestStore[:request][Middleware::ENV_KEY] = super
         else
           super
         end
