@@ -13,5 +13,5 @@ Gem::Specification.new name, Airbrake::UserInformer::VERSION do |s|
   s.required_ruby_version = ">= 2.6.0"
   s.add_runtime_dependency "railties", ">= 5.0.0", "< 7.1.0"
   s.add_runtime_dependency "rack"
-  s.add_runtime_dependency "airbrake", "~> 9.5"
+  s.add_runtime_dependency "airbrake", "~> 13.0"
 end
