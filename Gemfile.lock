@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     airbrake-user_informer (0.8.0)
-      airbrake (~> 9.0)
+      airbrake (~> 9.5)
       rack
       railties (>= 5.0.0, < 7.1.0)
 

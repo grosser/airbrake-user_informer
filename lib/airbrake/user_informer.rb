@@ -1,10 +1,17 @@
 # frozen_string_literal: true
+require "airbrake"
+require "airbrake/rack"
+
 module Airbrake
   module UserInformer
     module MiddlewareExtension
       def notify_airbrake(*)
         if Airbrake.user_information
-          ::Airbrake::Rack::RequestStore[:request][Middleware::ENV_KEY] = super
+          notice = super
+          if (request = ::Airbrake::Rack::RequestStore[:request])
+            request[Middleware::ENV_KEY] = notice
+          end
+          notice
         else
           super
         end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require "spec_helper"
 
-SingleCov.covered! uncovered: 9 # if defined?(Rack) block is not tested ... TODO: test 'unless promise'
+SingleCov.covered! uncovered: 10 # if defined?(Rack) block is not tested ... TODO: test 'unless promise'
 
 describe Airbrake::UserInformer do
   after do
@@ -31,9 +31,9 @@ describe Airbrake::UserInformer do
 
     it "stores the promise when user will be notified" do
       Airbrake.user_information = "foo"
-      env = {}
-      klass.new.notify_airbrake(1, env)
-      expect(env).to eq("airbrake.promise" => "promise")
+      ::Airbrake::Rack::RequestStore[:request] = {}
+      klass.new.notify_airbrake(1)
+      expect(::Airbrake::Rack::RequestStore[:request]).to eq("airbrake.promise" => "promise")
     end
   end
 
