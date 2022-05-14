@@ -10,7 +10,7 @@ describe Airbrake::UserInformer do
   end
 
   it "has a VERSION" do
-    expect(Airbrake::UserInformer::VERSION).to match(/^[\.\da-z]+$/)
+    expect(Airbrake::UserInformer::VERSION).to match(/^[.\da-z]+$/)
   end
 
   describe Airbrake::UserInformer::MiddlewareExtension do
@@ -125,7 +125,7 @@ describe Airbrake::UserInformer do
     end
 
     describe "when body is an IO" do
-      class FakeIoBody
+      class FakeIoBody # rubocop:disable Lint/ConstantDefinitionInBlock
         def initialize(content)
           @content = content
           @closed = false

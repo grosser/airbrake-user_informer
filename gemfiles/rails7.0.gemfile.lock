@@ -1,5 +1,5 @@
 PATH
-  remote: .
+  remote: ..
   specs:
     airbrake-user_informer (0.7.1)
       airbrake (~> 9.0)
@@ -44,10 +44,10 @@ GEM
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     method_source (1.0.0)
-    mini_portile2 (2.8.0)
     minitest (5.15.0)
-    nokogiri (1.13.6)
-      mini_portile2 (~> 2.8.0)
+    nokogiri (1.13.6-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.13.6-x86_64-linux)
       racc (~> 1.4)
     parallel (1.22.1)
     parser (3.1.2.0)
@@ -106,11 +106,13 @@ GEM
     zeitwerk (2.5.4)
 
 PLATFORMS
-  ruby
+  arm64-darwin-21
+  x86_64-linux
 
 DEPENDENCIES
   airbrake-user_informer!
   bump
+  railties (~> 7.0.0)
   rake
   rspec
   rubocop

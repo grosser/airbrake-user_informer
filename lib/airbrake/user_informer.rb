@@ -58,15 +58,14 @@ module Airbrake
         headers["Content-Length"] = new_body.inject(0) { |sum, x| sum + x.bytesize }.to_s
         new_body
       ensure
-        body.close if body&.respond_to?(:close)
+        body.close if body.respond_to?(:close)
       end
     end
   end
 end
 
 class << Airbrake
-  attr_accessor :user_information
-  attr_accessor :user_information_placeholder
+  attr_accessor :user_information, :user_information_placeholder
 end
 
 if defined?(::Rails::Railtie)

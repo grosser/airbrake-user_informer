@@ -2,7 +2,6 @@
 require "bundler/setup"
 require "bundler/gem_tasks"
 require "bump/tasks"
-require "wwtd/tasks"
 
 # TODO: we should run integration by default ??
 task default: [:spec, :rubocop]
@@ -39,4 +38,14 @@ end
 desc "Run rubocop"
 task :rubocop do
   sh "rubocop"
+end
+
+desc "Bundle all gemfiles"
+task :bundle_all do
+  cmd = ENV["CMD"]
+  Bundler.with_original_env do
+    Dir["gemfiles/*.gemfile"].each do |gemfile|
+      sh "BUNDLE_GEMFILE=#{gemfile} bundle #{cmd}"
+    end
+  end
 end

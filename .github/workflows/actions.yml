@@ -1,0 +1,35 @@
+name: CI
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        task: ["spec"]
+        ruby: ['2.7', '3.0', '3.1']
+        rails: ['5.0', '5.1', '5.2', '6.0', '6.1', '7.0']
+        include:
+        - ruby: 2.7 # keep in sync with lowest version and .rubocop.yml
+          rails: '5.0'
+          task: rubocop
+        exclude:
+        - { ruby: '3.0', rails: '5.0', task: spec }
+        - { ruby: '3.0', rails: '5.1', task: spec }
+        - { ruby: '3.0', rails: '5.2', task: spec }
+        - { ruby: '3.1', rails: '5.0', task: spec }
+        - { ruby: '3.1', rails: '5.1', task: spec }
+        - { ruby: '3.1', rails: '5.2', task: spec }
+    name: ruby${{ matrix.ruby }} rails${{ matrix.rails }} rake ${{ matrix.task }}
+    env:
+      BUNDLE_GEMFILE: gemfiles/rails${{ matrix.rails }}.gemfile
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby }}
+        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+    - run: bundle exec rake ${{ matrix.task }}
